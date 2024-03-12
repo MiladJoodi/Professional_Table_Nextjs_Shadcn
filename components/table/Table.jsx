@@ -55,7 +55,10 @@ const invoices = [
 ]
 
 
-const TableNew = () => {
+const TableNew = async ({query}) => {
+
+    const invoicesNew = invoices.filter((invoice)=> invoice.invoice.includes(query));
+    
     return (
         <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
@@ -68,7 +71,7 @@ const TableNew = () => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {invoices.map((invoice) => (
+                {invoicesNew.map((invoice) => (
                     <TableRow key={invoice.invoice}>
                         <TableCell className="font-medium">{invoice.invoice}</TableCell>
                         <TableCell>{invoice.paymentStatus}</TableCell>
